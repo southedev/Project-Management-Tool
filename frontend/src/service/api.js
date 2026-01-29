@@ -1,19 +1,7 @@
 import axios from "axios";
 
 // Determine the base URL based on environment
-let baseURL = import.meta.env.VITE_BASE_URL || "http://localhost:5000"; // Default fallback
-
-if (import.meta.env.VITE_BASE_URL) {
-  baseURL = import.meta.env.VITE_BASE_URL;
-} else if (typeof window !== 'undefined') {
-  // In browser environment - try to detect if we're in production
-  const hostname = window.location.hostname;
-  if (hostname !== 'localhost' && !hostname.includes('127.0.0.1')) {
-    // Production environment - assume backend is at same origin but different port or use environment var
-    // Or use a default production backend URL if provided as environment variable
-    baseURL = import.meta.env.VITE_BASE_URL;
-  }
-}
+const baseURL = import.meta.env.VITE_BASE_URL || "http://localhost:5000"; // Default fallback
 
 const instance = axios.create({
   baseURL: baseURL,
