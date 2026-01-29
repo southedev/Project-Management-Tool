@@ -1,7 +1,17 @@
 import axios from "axios";
 
 // Determine the base URL based on environment
-const baseURL = import.meta.env.VITE_BASE_URL || "http://localhost:5000"; // Default fallback
+let baseURL = import.meta.env.VITE_BASE_URL || "http://localhost:5000"; // Default fallback
+
+// In production environments served from GitHub Pages, ensure we're pointing to the backend
+if (typeof window !== 'undefined') {
+  const currentOrigin = window.location.origin;
+  
+  // If we're on GitHub Pages, make sure we use the backend URL
+  if (currentOrigin.includes('github.io')) {
+    baseURL = "https://project-mgt-server-silk.vercel.app/";
+  }
+}
 
 const instance = axios.create({
   baseURL: baseURL,
