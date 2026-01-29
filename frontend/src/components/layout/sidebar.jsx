@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
 import { Button } from '../ui/button';
 import { ScrollArea } from '../ui/scroll-area';
-import SidebarNav from '@/auth/layout/sidebar-nav';
+import SidebarNav from '@/components/auth/layout/sidebar-nav';
 
 
 const Sidebar = ({ currentWorkspace }) => {

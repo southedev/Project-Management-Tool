@@ -1,8 +1,8 @@
 import { HashRouter, Route, Routes } from "react-router-dom"
 import Landing from "./pages/welcome/landing"
-import SignIn from "./auth/sign-in"
-import SignUp from "./auth/sign-up"
-import ForgotPassword from "./auth/forgot-password"
+import SignIn from "./components/auth/sign-in"
+import SignUp from "./components/auth/sign-up"
+import ForgotPassword from "./components/auth/forgot-password"
 import Workspaces from "./pages/workspaces/workspaces"
 // import MyTasks from "./pages/workspace/my-tasks"
 // import Members from "./pages/workspace/members"
@@ -11,7 +11,7 @@ import Workspaces from "./pages/workspaces/workspaces"
 import WorkspaceDetails from "./pages/workspaces/workspace-details"
 import DashboardLayout from "./pages/dashboard/dashboard-layout"
 import CreateWorkspace from "./components/workspace/create-workspace"
-import ProtectedLayout from "./auth/layout/protected-layout"
+import ProtectedLayout from "./components/auth/layout/protected-layout"
 
 function App() {
   return (

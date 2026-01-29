@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { signUpSchema } from '../lib/schema'
+import { signUpSchema } from '../../lib/schema'
 import { Card, CardHeader, CardFooter, CardTitle, CardContent } from '@/components/ui/card'
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'

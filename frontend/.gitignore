@@ -26,3 +26,4 @@ dist-ssr
 .env
 DEPLOYMENT-INSTRUCTIONS.md
 DEPLOYMENT.md
+.gitignore
