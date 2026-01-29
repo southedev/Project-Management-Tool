@@ -28,8 +28,10 @@ const corsOptions = {
         // Allow requests with no origin (like mobile apps or curl requests)
         if (!origin) return callback(null, true);
         
-        // Check if we're in production
-        const isProduction = process.env.NODE_ENV === 'production';
+        // Always allow the GitHub Pages origin for the frontend
+        if (origin === 'https://southedev.github.io') {
+            return callback(null, true);
+        }
         
         // Split allowed origins and trim whitespace
         const allowedOrigins = process.env.ALLOWED_ORIGINS 
@@ -50,6 +52,9 @@ const corsOptions = {
         if (isAllowed) {
             return callback(null, true);
         }
+        
+        // Check if we're in production
+        const isProduction = process.env.NODE_ENV === 'production';
         
         // For production, also allow vercel.app domains or localhost
         if (isProduction) {
