@@ -30,16 +30,29 @@ const corsOptions = {
         
         // Check if we're in production
         const isProduction = process.env.NODE_ENV === 'production';
+        
+        // Split allowed origins and trim whitespace
         const allowedOrigins = process.env.ALLOWED_ORIGINS 
             ? process.env.ALLOWED_ORIGINS.split(',').map(url => url.trim()) 
             : [];
         
-        // For production, allow configured origins, vercel.app domains, or localhost
-        if (isProduction) {
-            // Allow configured origins from environment variable
-            if (allowedOrigins.includes(origin)) {
-                return callback(null, true);
+        // Check if origin matches any allowed origin (including wildcard patterns)
+        const isAllowed = allowedOrigins.some(allowedOrigin => {
+            // Handle wildcard pattern (e.g., https://example.com/* should match https://example.com)
+            if (allowedOrigin.endsWith('/*')) {
+                const baseUrl = allowedOrigin.slice(0, -2); // Remove '/*' from the end
+                return origin === baseUrl || origin.startsWith(baseUrl + '/');
             }
+            // Direct match
+            return origin === allowedOrigin;
+        });
+        
+        if (isAllowed) {
+            return callback(null, true);
+        }
+        
+        // For production, also allow vercel.app domains or localhost
+        if (isProduction) {
             // Allow any vercel.app subdomain for Vercel deployments
             if (origin.endsWith('.vercel.app')) {
                 return callback(null, true);
@@ -49,13 +62,12 @@ const corsOptions = {
                 return callback(null, true);
             }
         } else {
-            // Development: allow configured origins or localhost ports
+            // Development: allow localhost ports
             const devOrigins = [
                 "http://localhost:5173",
                 "http://localhost:3000",
                 "http://127.0.0.1:5173",
-                "http://127.0.0.1:3000",
-                ...(process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',').map(url => url.trim()) : [])
+                "http://127.0.0.1:3000"
             ];
             
             if (devOrigins.includes(origin)) {
