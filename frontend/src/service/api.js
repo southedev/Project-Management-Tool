@@ -11,7 +11,7 @@ if (import.meta.env.VITE_BASE_URL) {
   if (hostname !== 'localhost' && !hostname.includes('127.0.0.1')) {
     // Production environment - assume backend is at same origin but different port or use environment var
     // Or use a default production backend URL if provided as environment variable
-    baseURL = import.meta.env.VITE_PROD_BASE_URL || "https://your-backend-url.vercel.app";
+    baseURL = import.meta.env.VITE_BASE_URL || "https://your-backend-url.vercel.app";
   }
 }
 
