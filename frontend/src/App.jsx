@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { HashRouter, Route, Routes } from "react-router-dom"
 import Landing from "./pages/welcome/landing"
 import SignIn from "./auth/sign-in"
 import SignUp from "./auth/sign-up"
@@ -15,7 +15,7 @@ import ProtectedLayout from "./auth/layout/protected-layout"
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
 
       <Routes>
         <Route path="/" element={<Landing />} />
@@ -39,7 +39,7 @@ function App() {
         </Route>
 
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 

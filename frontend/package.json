@@ -1,16 +1,13 @@
 {
   "name": "frontend",
+  "homepage": "https://southedev.github.io/Project-Management-Tool",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:check": "vite --open",
     "build": "vite build",
-    "lint": "eslint .",
-    "lint:check": "eslint ./src/**/*.{js,jsx}",
-    "preview": "vite preview",
-    "prebuild": "npm run lint"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

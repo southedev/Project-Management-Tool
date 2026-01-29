@@ -24,6 +24,7 @@ export default defineConfig({
       },
     }),
   ],
+  base: "/Project-Management-Tool/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

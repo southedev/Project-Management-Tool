@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Determine the base URL based on environment
-let baseURL = "http://localhost:5000"; // Default fallback
+let baseURL = import.meta.env.VITE_BASE_URL || "http://localhost:5000"; // Default fallback
 
 if (import.meta.env.VITE_BASE_URL) {
   baseURL = import.meta.env.VITE_BASE_URL;
