@@ -39,7 +39,7 @@ const loginUser = async (req, res) => {
     }
 
     if(!user.isEmailVerified) {
-
+      return res.status(401).json({ message: "Please verify your email address before logging in" });
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);

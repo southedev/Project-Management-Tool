@@ -8,7 +8,7 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { EyeIcon, EyeOffIcon } from 'lucide-react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { signIn } from '@/features/authSlice'
 import { useNavigate } from 'react-router-dom'
 // import { getUserWorkspaces } from '@/features/workspaceSlice'
@@ -19,6 +19,7 @@ const SignIn = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { error, loading } = useSelector((state) => state.auth);
 
     const form = useForm({
         resolver: zodResolver(signInSchema),
@@ -39,8 +40,10 @@ const SignIn = () => {
                 toast.success('Welcome back!')
                 navigate('/dashboard')
             }
+        } else if (signIn.rejected.match(result)) {
+            // Error will be shown via form error or toast
+            toast.error(result.payload || 'Login failed');
         }
-
     };
 
     return (
@@ -52,6 +55,11 @@ const SignIn = () => {
                 </CardHeader>
 
                 <CardContent>
+                    {error && (
+                        <div className="mb-4 p-3 bg-destructive/10 border border-destructive/20 rounded-md text-destructive text-sm">
+                            {error}
+                        </div>
+                    )}
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
                             <FormField
@@ -91,7 +99,9 @@ const SignIn = () => {
                                 )}
                             />
 
-                            <Button type="submit" className="w-full">Sign In</Button>
+                            <Button type="submit" className="w-full" disabled={loading}>
+                                {loading ? 'Signing in...' : 'Sign In'}
+                            </Button>
                         </form>
                     </Form>
 

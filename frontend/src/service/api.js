@@ -1,4 +1,5 @@
 import axios from "axios";
+import { debugApiCall, debugApiResponse, debugApiError } from '@/utils/debug-api';
 
 // Determine the base URL based on environment
 let baseURL = import.meta.env.VITE_BASE_URL || "http://localhost:5000"; // Default fallback
@@ -28,17 +29,27 @@ instance.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+    // Debug request in development
+    debugApiCall(config);
     return config;
   },
   (error) => {
+    debugApiError(error);
     return Promise.reject(error);
   }
 );
 
 // Response interceptor to handle token expiration or invalidation
 instance.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    // Debug successful response in development
+    debugApiResponse(response);
+    return response;
+  },
   (error) => {
+    // Debug error response in development
+    debugApiError(error);
+    
     if (error.response?.status === 401) {
       // Clear user data if unauthorized
       localStorage.removeItem('user');

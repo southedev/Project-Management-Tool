@@ -26,7 +26,17 @@ export const signIn = createAsyncThunk('auth/signIn', async (data, thunkAPI) => 
         const userData = { ...user, token };
         return userData
     } catch (error) {
-        return thunkAPI.rejectWithValue(error.message)
+        // More detailed error handling
+        if (error.response) {
+            // Server responded with error status
+            return thunkAPI.rejectWithValue(error.response.data.message || 'Login failed');
+        } else if (error.request) {
+            // Request was made but no response received
+            return thunkAPI.rejectWithValue('Network error - please check your connection');
+        } else {
+            // Something else happened
+            return thunkAPI.rejectWithValue(error.message || 'An unexpected error occurred');
+        }
     }
 })
 

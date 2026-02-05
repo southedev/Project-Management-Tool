@@ -29,7 +29,7 @@ const corsOptions = {
         if (!origin) return callback(null, true);
         
         // Always allow the GitHub Pages origin for the frontend
-        if (origin === 'https://southedev.github.io') {
+        if (origin === 'https://southedev.github.io' || origin === 'https://southedev.github.io/Project-Management-Tool') {
             return callback(null, true);
         }
         
