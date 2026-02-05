@@ -16,7 +16,7 @@ const Landing = () => {
                         <span className="text-[#50E3C2] text-sm font-medium">Project Management Redefined</span>
                     </div>
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
-                        Streamline Your Projects with <span className="text-[#4A90E2]">ProjectFlow</span>
+                        Streamline Your Projects with <span className="text-[#4A90E2]">To be Defined</span>
                     </h1>
                     <p className="text-xl md:text-2xl text-[#A0A0B0] mb-10 max-w-3xl mx-auto leading-relaxed">
                         A modern, intuitive project management tool designed to help teams organize, track, and collaborate on projects with unprecedented efficiency.
@@ -153,7 +153,7 @@ const Landing = () => {
                         Ready to Transform Your Project Management?
                     </h2>
                     <p className="text-xl text-[#A0A0B0] mb-10 max-w-3xl mx-auto">
-                        Join thousands of teams who use ProjectFlow to streamline their workflows and boost productivity.
+                        Join thousands of teams who use To be Defined to streamline their workflows and boost productivity.
                     </p>
                     <Link
                         to="/sign-up"

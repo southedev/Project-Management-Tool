@@ -1,5 +1,5 @@
 import { HashRouter, Route, Routes } from "react-router-dom"
-import Landing from "./pages/welcome/landing"
+import WelcomeLayout from "./pages/welcome/welcome-layout"
 import SignIn from "./components/auth/sign-in"
 import SignUp from "./components/auth/sign-up"
 import ForgotPassword from "./components/auth/forgot-password"
@@ -18,7 +18,7 @@ function App() {
     <HashRouter>
 
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route path="/" element={<WelcomeLayout />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />

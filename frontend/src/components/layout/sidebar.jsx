@@ -57,7 +57,7 @@ const Sidebar = ({ currentWorkspace }) => {
             !isCollapsed && (
               <div className="flex items-center gap-2">
                 <Workflow className="size-6 text-blue-500" />
-                <span className="font-semibold text-lg hidden md:block">ProjectFlow</span>
+                <span className="font-semibold text-lg hidden md:block">To be Defined</span>
               </div>
             )
           }
