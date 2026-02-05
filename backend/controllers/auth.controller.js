@@ -38,9 +38,11 @@ const loginUser = async (req, res) => {
       return res.status(401).json({ message: "Email or password is incorrect" });
     }
 
-    if(!user.isEmailVerified) {
-      return res.status(401).json({ message: "Please verify your email address before logging in" });
-    }
+    // Temporary: Allow login without email verification
+    // TODO: Re-enable after implementing email verification system
+    // if(!user.isEmailVerified) {
+    //   return res.status(401).json({ message: "Please verify your email address before logging in" });
+    // }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
